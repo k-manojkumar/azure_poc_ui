@@ -30,6 +30,7 @@ function resourceReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         resources: action.payload.resources,
+        events: action.payload.events ? action.payload.events : [],
         noColleague: false,
         serviceError: false
       };

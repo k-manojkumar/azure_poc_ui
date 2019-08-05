@@ -6,7 +6,11 @@ import {
   SERVICE_FAILURE
 } from "./actionTypes";
 
-const baseURL = "http://10.179.210.253:7601/DiaryManagerService/v1/";
+//const baseURL = process.env.REACT_APP_GET_RESOURCE_URL;
+/* process.env.NODE_ENV === "development"
+    ? "http://10.179.210.253:7601/DiaryManagerService/v1/"
+    : process.env.REACT_APP_GET_RESOURCE_URL; */
+const baseURL = "http://10.179.202.2:7601/ColleagueService/v1/";
 
 export const searchColleague = collID => dispatch => {
   console.log("inside sortCodeActions --> searchColleague " + collID);
@@ -32,7 +36,7 @@ export const searchColleague = collID => dispatch => {
       console.log("searchColleague result -->" + result);
 
       dispatch(addColleague(result));
-      dispatch(getEvents(result));
+      //dispatch(getEvents(result));
     })
     .catch(err => {
       console.log(err);
@@ -55,7 +59,8 @@ export const addColleague = resources => dispatch => {
   return dispatch({
     type: ADD_RESOURCE,
     payload: {
-      resources: [resources]
+      resources: [resources],
+      events: resources.events
     }
   });
 };
